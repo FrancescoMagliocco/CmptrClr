@@ -113,10 +113,6 @@ hi! link boolean                            cTagsDefinedName
 
 " Think of a group this could be part of?
 
-" cpp
-hi! link cppConstant                        constant
-hi! link cppNumber                          number
-
 " c
 hi cCommentStart        guifg=#404040   guibg=NONE      cterm=none
 hi cFormat              guifg=#800000   guibg=NONE      cterm=underline
