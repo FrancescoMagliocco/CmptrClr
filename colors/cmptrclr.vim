@@ -113,15 +113,6 @@ hi! link boolean                            cTagsDefinedName
 
 " Think of a group this could be part of?
 
-
-" XML
-hi! link xmlAttrib                          type
-hi! link xmlAttribPunct                     delimiter
-hi! link xmlEqual                           noise
-hi! link xmlString                          string
-hi! link xmlTag                             delimiter
-hi! link xmlTagName                         tagName
-
 " json
 hi jsonSemicolonError   guifg=#800000   guibg=#F00000   cterm=bold,underline
 hi! link jsonBoolean                        boolean
