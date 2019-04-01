@@ -114,22 +114,6 @@ hi! link boolean                            cTagsDefinedName
 " Think of a group this could be part of?
 
 
-" HTML
-hi! link htmlArg                            type
-hi! link htmlComment                        comment
-
-" XML doesn't have the samething, so we don't treat it as special
-hi! link htmlEndTag                         htmlTag
-
-hi! link htmlH2                             htmlTitle
-hi! link htmlH3                             htmlTitle
-hi! link htmlLink                           underlined
-hi! link htmlTag                            delimiter
-hi! link htmlTagName                        tagName
-hi! link htmlTitle                          title
-hi! link htmlSpecialChar                    specialChar
-hi! link htmlSpecialTagName                 identifier
-
 " XML
 hi! link xmlAttrib                          type
 hi! link xmlAttribPunct                     delimiter
