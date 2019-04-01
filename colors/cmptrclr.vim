@@ -1,3 +1,6 @@
+" NOTE: May also check for the existance of both global variables
+if  !g:loaded_CmptrClr || !g:CmptrClr_enabled | finish | endif
+
 hi clear Normal
 set bg&
 
