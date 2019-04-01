@@ -113,12 +113,6 @@ hi! link boolean                            cTagsDefinedName
 
 " Think of a group this could be part of?
 
-" yaml
-hi! link yamlComment                        comment
-hi! link yamlInline                         operator
-hi! link yamlKey                            identifier
-hi! link yamlString                         string
-
 " conf
 hi! link confComment                        comment
 hi! link confString                         string
