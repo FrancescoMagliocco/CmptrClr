@@ -113,10 +113,6 @@ hi! link boolean                            cTagsDefinedName
 
 " Think of a group this could be part of?
 
-" conf
-hi! link confComment                        comment
-hi! link confString                         string
-
 " cpp
 hi! link cppConstant                        constant
 hi! link cppNumber                          number
