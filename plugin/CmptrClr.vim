@@ -3,6 +3,9 @@ if (exists('g:loaded_CmptrClr')
             \ | finish | endif
 
 if !exists('g:CmptrClr_enabled') | let g:CmptrClr_enabled = 1 | endif
+if !exists('g:CmptrClr_lang_dir') | let g:CmptrClr_lang_dir =
+            \ expand('%:p:h') . '/CmptrClr/languages/'
+            \ | endif
 
 if &cp
     echohl warningMsg | echomsg

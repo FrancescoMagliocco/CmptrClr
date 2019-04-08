@@ -114,4 +114,3 @@ hi! link storageClass                       type
 " Linking to cTagsDefined name as that's what c uses.
 hi! link boolean                            cTagsDefinedName
 
-" Think of a group this could be part of?
