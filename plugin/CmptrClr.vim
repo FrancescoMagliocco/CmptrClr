@@ -13,11 +13,6 @@ if (exists('g:loaded_CmptrClr')
 
 let g:CmptrClr_enabled  = get(g:, 'CmptrClr_enabled', 1)
 
-let g:CmptrClr_lang_dir = get(
-            \ g:,
-            \ 'CmptrClr_lang_dir',
-            \ expand('%:p:h') . '/CmptrClr/languages/')
-
 let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 
 " TODO Create a variable for each language.  I have tested this using 'execute'
