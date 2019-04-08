@@ -5,7 +5,7 @@ hi clear Normal
 set bg&
 
 hi clear
-if exists("syntax_on")
+if exists('syntax_on')
     syn reset
 endif
 " TODO Create a highlight group for exceptions.  By default the
@@ -48,7 +48,7 @@ endif
 "E8
 "F0
 "F8
-let g:colors_name = "cmptrclr"
+let g:colors_name = 'cmptrclr'
 
 hi argument             guifg=#8000A8   guibg=NONE      cterm=none
 hi attribute            guifg=#00B0F0   guibg=NONE      cterm=none
