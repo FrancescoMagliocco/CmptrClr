@@ -11,9 +11,6 @@ if (exists('g:loaded_CmptrClr')
             \ || (exists('g:CmptrClr_enabled') && !g:CmptrClr_enabled))
             \ | finish | endif
 
-" TODO When commiting, be sure to delete this as this is part of another
-" feature that is being worked on.  First commit the comments and new version
-" check, then add this again.
 let g:CmptrClr_enabled  = get(g:, 'CmptrClr_enabled', 1)
 
 let g:CmptrClr_lang_dir = get(
