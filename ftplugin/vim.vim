@@ -1,3 +1,14 @@
+if !exists('g:loaded_CmptrClr')
+            \ || !g:CmptrClr_enabled
+            \ || (exists('s:CmptrClr_loaded_vim') && s:CmptrClr_loaded_vim)
+            \ | finish | endif
+let s:CmptrClr_loaded_vim = get(s:, 'CmptrClr_loaded_vim', 1)
+" WARNING: If the the current filetype does not exist in the dict, an error
+" will be thrown.
+if !g:CmptrClr_use_default_hl[&filetype]
+    finish
+endif
+
 hi! link vimAugroupKey                      vimCommand
 hi! link vimAutoCmd                         vimCommand
 hi! link vimAutoEvent                       event
@@ -47,3 +58,9 @@ hi! link vimUserCmd                         vimSep
 hi! link vimUserCommand                     vimCommand
 hi! link vimUserFunc                        functionName
 hi! link vimVar                             globalVariable
+
+function! s:SourceHlFile()
+    if g:CmptrClr_use_user_hl[&filetype]
+        execute 'source' g:CmptrClr_user_hl[&filetype]
+    endif
+endfunction
