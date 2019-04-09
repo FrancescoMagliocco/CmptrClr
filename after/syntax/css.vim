@@ -2,10 +2,10 @@
 
 if !exists('g:loaded_CmptrClr')
       \ || !g:CmptrClr_enabled
-      \ || (exists('s:CmptrClr_loaded_css') && s:CmptrClr_loaded_css)
+      \ || (exists('g:CmptrClr_loaded_css') && g:CmptrClr_loaded_css)
   finish | endif
 
-let s:CmptrClr_loaded_css = get(s:, 'CmptrClr_loaded_css', 1)
+let g:CmptrClr_loaded_css = get(g:, 'CmptrClr_loaded_css', 1)
 
 " XXX WARNING If the the current filetype does not exist in the dict, an error
 " will be thrown.
@@ -42,3 +42,5 @@ function! s:SourceHlFile()
     execute 'source' g:CmptrClr_user_hl[&filetype]
   endif
 endfunction
+
+let g:CmptrClr_loaded_css = 1
