@@ -72,7 +72,8 @@ function! s:ParseHlDict()
 
     " TODO Maybe implement this in with the filereadable
     g:CmptrClr_use_user_hl[k] = 1
-  endfor | endfunction
+  endfor
+endfunction
 
 " TODO I want to implement the option to specify directories for user created
 " highlight groups.  They will be sourced after the main highlight group files

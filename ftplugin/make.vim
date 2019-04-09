@@ -32,4 +32,5 @@ hi! link makeTarget       label
 function! s:SourceHlFile()
   if g:CmptrClr_use_user_hl[&filetype]
     execute 'source' g:CmptrClr_user_hl[&filetype]
-  endif | endfunction
+  endif
+endfunction
