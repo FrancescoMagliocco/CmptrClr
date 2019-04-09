@@ -46,13 +46,13 @@ endif
 "F0
 "F8
 let g:colors_name = 'cmptrclr'
-
 hi argument             guifg=#8000A8   guibg=NONE      cterm=none
 hi attribute            guifg=#00B0F0   guibg=NONE      cterm=none
 hi class                guifg=#00F800   guibg=NONE      cterm=none
 hi conditional          guifg=#8000A8   guibg=NONE      cterm=none
 hi comment              guifg=#505050   guibg=NONE      cterm=none
 hi command              guifg=#0080F8   guibg=NONE      cterm=none
+hi conceal              guifg=#101010   guibg=NONE      cterm=none
 hi constant             guifg=#F8D000   guibg=NONE      cterm=none
 " FIXME I feel like a dark purpilsh, redish would be better suited for this.
 " The purplish color is used too much elsewhere.  I believe I have used a good
@@ -71,7 +71,7 @@ hi localVariable        guifg=#F8F800   guibg=NONE      cterm=none
 hi member               guifg=#F8B800   guibg=NONE      cterm=none
 " This is the same as operator
 hi noise                guifg=#F8F8F8   guibg=NONE      cterm=bold
-hi normal               guifg=#E8E8E8   guibg=#000000   cterm=none
+hi normal               guifg=#E8E8E8   guibg=NONE      cterm=none
 hi notation             guifg=#F8A800   guibg=NONE      cterm=none
 hi number               guifg=#F80000   guibg=NONE      cterm=none
 " This is the same as noise
