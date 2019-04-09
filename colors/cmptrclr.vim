@@ -97,7 +97,7 @@ hi specialChar      guifg=#800000 guibg=NONE    cterm=bold
 hi statement        guifg=#0000F8 guibg=NONE    cterm=none
 hi string           guifg=#A048A0 guibg=NONE    cterm=none
 hi structure        guifg=#f88000 guibg=NONE    cterm=none
-hi title            guifg=#00F800 guibg=NONE    cterm=underline
+hi title            guifg=#00F800 guibg=NONE    cterm=none
 hi todo             guifg=#F84800 guibg=NONE    cterm=none
 hi type             guifg=#F86800 guibg=NONE    cterm=none
 hi underlined       guifg=#0080F8 guibg=NONE    cterm=underline
