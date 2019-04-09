@@ -13,6 +13,28 @@ if (exists('g:loaded_CmptrClr')
 
 let g:CmptrClr_enabled  = get(g:, 'CmptrClr_enabled', 1)
 
+if &compatible
+    echohl warningMsg | echomsg
+                \ "This plugin requires 'nocompatible' to be set."
+                \ | echohl None
+    finish
+endif
+
+if !has('termguicolors')
+    echohl error | echomsg
+                \ "This plugin requires the feature 'termguicolors'."
+                \ | echohl None
+    finish
+endif
+
+if !(&termguicolors)
+    echohl error | echomsg
+                \ "This plugin requires 'termguicolors' to be set."
+                \ | echohl None
+    finish
+endif
+
+
 let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 
 " TODO Create a variable for each language.  I have tested this using 'execute'
@@ -70,26 +92,5 @@ endfunction
 " TODO I want to implement autocmds so that only the languages that have been
 " opened, have their corresponding highlight groups files sourced.  This may
 " save a little bit of memory, and also be less cpu intensive.
-
-if &compatible
-    echohl warningMsg | echomsg
-                \ "This plugin requires 'nocompatible' to be set."
-                \ | echohl None
-    finish
-endif
-
-if !has('termguicolors')
-    echohl error | echomsg
-                \ "This plugin requires the feature 'termguicolors'."
-                \ | echohl None
-    finish
-endif
-
-if !(&termguicolors)
-    echohl error | echomsg
-                \ "This plugin requires 'termguicolors' to be set."
-                \ | echohl None
-    finish
-endif
 
 let g:loaded_CmptrClr   = 1
