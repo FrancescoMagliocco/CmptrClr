@@ -36,19 +36,20 @@ let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 "
 " These languages are currently supported by default
 let s:CmptrClr_use_default_hl = {
-      \ 'c'       : 1,
-      \ 'conf'    : 1,
-      \ 'cpp'     : 1,
-      \ 'css'     : 1,
-      \ 'html'    : 1,
-      \ 'json'    : 1,
-      \ 'make'    : 1,
-      \ 'perl'    : 1,
-      \ 'python'  : 1,
-      \ 'sh'      : 1,
-      \ 'vim'     : 1,
-      \ 'xml'     : 1,
-      \ 'yaml'    : 1,
+      \ 'c'         : 1,
+      \ 'conf'      : 1,
+      \ 'cpp'       : 1,
+      \ 'css'       : 1,
+      \ 'html'      : 1,
+      \ 'json'      : 1,
+      \ 'make'      : 1,
+      \ 'markdown'  : 1,
+      \ 'perl'      : 1,
+      \ 'python'    : 1,
+      \ 'sh'        : 1,
+      \ 'vim'       : 1,
+      \ 'xml'       : 1,
+      \ 'yaml'      : 1,
       \ }
 
 " This make sure that the default kes are present in the dictinary.
@@ -82,5 +83,13 @@ endfunction
 " TODO I want to implement autocmds so that only the languages that have been
 " opened, have their corresponding highlight groups files sourced.  This may
 " save a little bit of memory, and also be less cpu intensive.
-
 let g:loaded_CmptrClr = 1
+
+" TODO If something was changed in the main colorscheme, the colors may not
+" update collorectly.
+" vint: -ProhibitAbbreviationOption
+function! s:ReloadSyn()
+  execute 'let g:CmptrClr_loaded_' . &ft . '= 0'
+  execute 'runtime syntax/' . &ft . '/' . &ft . '_after_syntax_CmptrClr.vim'
+endfunction
+command! CmptrClrReload call s:ReloadSyn()
