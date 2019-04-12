@@ -1,3 +1,7 @@
+" File              : markdown_after_syntax_CmptrClr.vim
+" Author            : Francesco Magliocco
+" Date              : 09/04/2019 22:00:00
+" Last Modified Date: 10/04/2019 15:16:56
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')

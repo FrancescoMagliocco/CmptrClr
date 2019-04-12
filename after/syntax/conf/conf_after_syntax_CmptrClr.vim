@@ -1,3 +1,7 @@
+" File              : conf_after_syntax_CmptrClr.vim
+" Author            : Francesco Magliocco
+" Date              : 01/04/2019
+" Last Modified Date: 10/04/2019 15:06:33
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -20,4 +24,4 @@ function! s:SourceHlFile()
   endif
 endfunction
 
-let g:CmptrClr_loaded_conf = 1
+let g:CmptrClr_loaded_conf  = 1
