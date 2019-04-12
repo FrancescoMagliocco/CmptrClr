@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 10/04/2019 15:40:00
+" Last Modified Date: 11/04/2019 21:17:13
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 " Version 8 and higher has the option 'termguicolors'
@@ -40,25 +40,26 @@ let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 "
 " These languages are currently supported by default
 let s:CmptrClr_use_default_hl = {
-      \ 'c'         : 1,
-      \ 'conf'      : 1,
-      \ 'cpp'       : 1,
-      \ 'css'       : 1,
-      \ 'help'      : 1,
-      \ 'html'      : 1,
-      \ 'json'      : 1,
-      \ 'make'      : 1,
-      \ 'markdown'  : 1,
-      \ 'perl'      : 1,
-      \ 'postscr'   : 1,
-      \ 'python'    : 1,
-      \ 'ruby'      : 1,
-      \ 'sh'        : 1,
-      \ 'tags'      : 1,
-      \ 'vim'       : 1,
-      \ 'viminfo'   : 1,
-      \ 'xml'       : 1,
-      \ 'yaml'      : 1,
+      \ 'debsources'  : 1,
+      \ 'c'           : 1,
+      \ 'conf'        : 1,
+      \ 'cpp'         : 1,
+      \ 'css'         : 1,
+      \ 'help'        : 1,
+      \ 'html'        : 1,
+      \ 'json'        : 1,
+      \ 'make'        : 1,
+      \ 'markdown'    : 1,
+      \ 'perl'        : 1,
+      \ 'postscr'     : 1,
+      \ 'python'      : 1,
+      \ 'ruby'        : 1,
+      \ 'sh'          : 1,
+      \ 'tags'        : 1,
+      \ 'vim'         : 1,
+      \ 'viminfo'     : 1,
+      \ 'xml'         : 1,
+      \ 'yaml'        : 1,
       \ }
 
 " This make sure that the default kes are present in the dictinary.
