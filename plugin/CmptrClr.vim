@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 11/04/2019 21:20:04
+" Last Modified Date: 11/04/2019 21:21:04
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 " Version 8 and higher has the option 'termguicolors'
@@ -46,6 +46,7 @@ let s:CmptrClr_use_default_hl = {
       \ 'conf'        : 1,
       \ 'cpp'         : 1,
       \ 'css'         : 1,
+      \ 'gitconfig'   : 1,
       \ 'help'        : 1,
       \ 'html'        : 1,
       \ 'json'        : 1,
