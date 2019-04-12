@@ -1,3 +1,7 @@
+" File              : python_after_syntax_CmptrClr.vim
+" Author            : Francesco Magliocco
+" Date              : 01/04/2019
+" Last Modified Date: 10/04/2019 15:12:11
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -11,7 +15,9 @@ let g:CmptrClr_loaded_python = get(g:, 'CmptrClr_loaded_python', 1)
 " will be thrown.
 if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
 
+" TODO Check if a boolean group has been made
 hi! link pythonBoolean      boolean
+
 hi! link pythonBuiltinFunc  functionName
 
 " XXX Not sure if I want to use 'cTagsDefinedName' or 'constant' as I'm
@@ -19,6 +25,7 @@ hi! link pythonBuiltinFunc  functionName
 " aren't constants constant values?  In C defined names are technically
 " constant, no?
 " XXX pythonNone was colored as a constant
+" FIXME I don't think cTagsDefinedName is defined
 hi! link pythonBuiltinObj   cTagsDefinedName
 hi! link pythonBuiltinType  type
 
@@ -26,6 +33,7 @@ hi! link pythonBuiltinType  type
 " 'pythonStrForat' depending on what that group ends up being.
 hi! link pythonBytesEscape  special
 
+hi! link pythonCoding       special
 hi! link pythonClass        class
 hi! link pythonComment      comment
 hi! link pythonConditional  conditional
@@ -44,6 +52,8 @@ hi! link pythonNumber       number
 
 " FIXME The 'not' in 'if not' is considered an operator..
 hi! link pythonOperator     operator
+
+hi! link pythonRawString    string
 
 hi! link pythonRepeat       repeat
 hi! link pythonRun          special
