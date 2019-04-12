@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 11/04/2019 21:17:13
+" Last Modified Date: 11/04/2019 21:20:04
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 " Version 8 and higher has the option 'termguicolors'
@@ -41,6 +41,7 @@ let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 " These languages are currently supported by default
 let s:CmptrClr_use_default_hl = {
       \ 'debsources'  : 1,
+      \ 'dosbatch'    : 1,
       \ 'c'           : 1,
       \ 'conf'        : 1,
       \ 'cpp'         : 1,
