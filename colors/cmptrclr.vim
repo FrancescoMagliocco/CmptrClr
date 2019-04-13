@@ -1,3 +1,7 @@
+" File              : cmptrclr.vim
+" Author            : Francesco Magliocco
+" Date              : 12/04/2019 22:11:30
+" Last Modified Date: 12/04/2019 23:00:04
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 hi clear Normal
@@ -5,6 +9,8 @@ set bg&
 
 hi clear
 if exists('syntax_on') | syn reset | endif
+
+" TODO Create a method group
 
 " TODO Create a highlight group for exceptions.  By default the
 " 'pythonExClass' group is linked to 'structure' which is orange.  So possibly
@@ -50,6 +56,10 @@ let g:colors_name = 'cmptrclr'
 
 hi argument         guifg=#8000A8 guibg=NONE    cterm=none
 hi attribute        guifg=#00B0F0 guibg=NONE    cterm=none
+
+" I think using the color of a string except having it be bold rather than not
+" would be the best choice for this.
+hi character        guifg=#A048A0 guibg=NONE    cterm=bold
 hi class            guifg=#00F800 guibg=NONE    cterm=none
 hi conditional      guifg=#8000A8 guibg=NONE    cterm=none
 hi comment          guifg=#505050 guibg=NONE    cterm=none
@@ -116,3 +126,8 @@ hi! link storageClass type
 
 " Linking to cTagsDefined name as that's what c uses.
 hi! link boolean      cTagsDefinedName
+
+hi! link variable   cTagsGlobalVariable
+
+" TODO Actually craete a group for this
+hi! link float        number
