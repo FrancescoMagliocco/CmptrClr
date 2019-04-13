@@ -1,7 +1,7 @@
 " File              : c_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 10/04/2019 15:07:00
+" Last Modified Date: 12/04/2019 22:05:22
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -22,8 +22,7 @@ hi cTagsDefinedName guifg=#c000c0 guibg=NONE    cterm=none
 hi! link cAnsiFunction        functionName
 hi! link cBoolean             boolean
 
-" TODO Make a default group for character
-hi! link cCharacter           constant
+hi! link cCharacter           character
 
 hi! link cComment             comment
 hi! link cCommentL            cComment
