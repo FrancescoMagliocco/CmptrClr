@@ -1,7 +1,7 @@
 " File              : help_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 10/04/2019
-" Last Modified Date: 10/04/2019 15:28:56
+" Last Modified Date: 12/04/2019 22:27:55
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -15,8 +15,8 @@ let g:CmptrClr_loaded_help = get(g:, 'CmptrClr_loaded_help', 1)
 " will be thrown.
 if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
 
-hi! link helpBacktick       special
-hi! link helpBar          delimiter
+hi! link helpBacktick       specialChar
+hi! link helpBar            delimiter
 hi! link helpCommand        command
 hi! link helpExample        comment
 
@@ -25,10 +25,10 @@ hi! link helpHeader         title
 
 hi! link helpHeadline       statement
 
-hi! link helpIgnore         special
-hi! link helpHyperTextEntry     string
-hi! link helpHyperTextJump      identifier
-hi! link helpNote         todo
+hi! link helpIgnore         specialChar
+hi! link helpHyperTextEntry string
+hi! link helpHyperTextJump  identifier
+hi! link helpNote           todo
 
 " TODO Change this
 hi! link helpNotVi          special
@@ -37,15 +37,15 @@ hi! link helpNotVi          special
 hi! link helpOption         option
 
 " May use something else
-hi! link helpSectionDelim     delimiter
+hi! link helpSectionDelim   delimiter
 
 hi! link helpSpecial        special
 
 " Because it has the word star in it, I want to make it yellow..
-hi! link helpStar         delimiter
+hi! link helpStar           delimiter
 
-hi! link helURL           underlined
-hi! link helpVim          identifier
+hi! link helURL             underlined
+hi! link helpVim            identifier
 
 function! s:SourceHlFile()
   if g:CmptrClr_use_user_hl[&filetype]
