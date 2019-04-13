@@ -1,7 +1,7 @@
 " File              : css_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 10/04/2019 15:10:32
+" Last Modified Date: 12/04/2019 22:06:49
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -23,8 +23,7 @@ hi! link cssBorderProp      cssProp
 hi! link cssBoxProp         cssProp
 hi! link cssBraces          delimiter
 
-" TODO This still needs to be done
-"hi! link cssClassName
+hi! link cssClassName       class
 
 hi! link cssClassNameDot    delimiter
 hi! link cssComment         comment
