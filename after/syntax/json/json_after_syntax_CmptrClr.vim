@@ -1,7 +1,7 @@
 " File              : json_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 10/04/2019 15:11:26
+" Last Modified Date: 12/04/2019 22:30:31
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -26,7 +26,7 @@ hi! link jsonNoise          noise
 hi! link jsonNoQuotesError  error
 hi! link jsonNull           preProc
 hi! link jsonNumber         number
-hi! link jsonQuote          special
+hi! link jsonQuote          specialChar
 hi! link jsonString         string
 
 function! s:SourceHlFile()
