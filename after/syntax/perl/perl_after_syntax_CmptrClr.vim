@@ -1,7 +1,7 @@
 " File              : perl_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 12/04/2019 02:16:22
+" Last Modified Date: 12/04/2019 22:45:32
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -19,8 +19,7 @@ hi! link perlComment            comment
 hi! link perlConditional        conditional
 hi! link perlControl            preProc
 
-" TODO Make a float group
-hi! link perlFloat              number
+hi! link perlFloat              float
 
 " XXX Despite the name, it's more like a keyword from the example that was
 " given.
@@ -29,11 +28,10 @@ hi! link perlFunction           statement
 " TODO Figure out what ths is
 hi! link perIQQ                 string
 
-" TODO It would probably be best to use somethig different so this doesn't
-" clash with strings.
-hi! link perlMatch              perlString
+" In other syntax files, match is linked to special.
+hi! link perlMatch              special
 
-" TODO Might use different
+" TODO Depnding on exactly what is highlighed, `specialChar` may be used.  
 hi! link perlMatchStartEnd      special
 
 " TODO I should make a method group
@@ -48,8 +46,7 @@ hi! link perlPackagedRef        type
 
 hi! link perlRepeat             repeat
 
-" TODO make sure this matches up with the pythonRun group
-hi! link perlSharpBang          special
+hi! link perlSharpBang          specialChar
 
 hi! link perlSpecialMatch       special
 hi! link perlSpecialString      special
