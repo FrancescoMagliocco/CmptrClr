@@ -1,7 +1,7 @@
 " File              : gitconfig_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 10/04/2019
-" Last Modified Date: 11/04/2019 21:21:08
+" Last Modified Date: 12/04/2019 22:17:57
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -19,7 +19,7 @@ if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
 hi! link gitconfigAssignment  string
 hi! link gitconfigNone        operator
 hi! link gitconfigSection     statement
-hi! link gitconfigVariable    cTagsGlobalVariable
+hi! link gitconfigVariable    variable
 
 function! s:SourceHlFile()
   if g:CmptrClr_use_user_hl[&filetype]
