@@ -1,7 +1,7 @@
 " File              : perl6_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 11/04/2019 22:02:36
-" Last Modified Date: 12/04/2019 01:56:09
+" Last Modified Date: 12/04/2019 22:46:50
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -25,8 +25,7 @@ hi! link p6Conditional  conditional
 " TODO This should probably be something else
 hi! link p6DeclareRoutine statement
 
-" TODO I think I wanted to create a group of its own for escape
-hi! link p6Escape       special
+hi! link p6Escape       specialChar
 
 " TODO Figure out what this means..
 " The perl6 syntax file has something similar to this.
