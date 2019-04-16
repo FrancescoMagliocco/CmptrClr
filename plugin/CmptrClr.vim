@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 15/04/2019 23:21:54
+" Last Modified Date: 15/04/2019 23:25:35
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 " Version 8 and higher has the option 'termguicolors'
@@ -42,13 +42,13 @@ let g:CmptrClr_use_default_hl = get(g:, 'CmptrClr_use_default_hl', {})
 let s:CmptrClr_use_default_hl = {
       \ 'abap'        : 1,
       \ 'ada'         : 1,
-      \ 'debsources'  : 1,
-      \ 'dosbatch'    : 1,
-      \ 'dosini'      : 1,
       \ 'c'           : 1,
       \ 'conf'        : 1,
       \ 'cpp'         : 1,
       \ 'css'         : 1,
+      \ 'debsources'  : 1,
+      \ 'dosbatch'    : 1,
+      \ 'dosini'      : 1,
       \ 'gitconfig'   : 1,
       \ 'gtkrc'       : 1,
       \ 'help'        : 1,
