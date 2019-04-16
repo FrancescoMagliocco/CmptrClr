@@ -1,7 +1,7 @@
 " File              : c_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 15/04/2019 19:09:38
+" Last Modified Date: 15/04/2019 22:55:08
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -40,10 +40,7 @@ hi! link cCustomBrack         delimiter
 
 hi! link cCustomClass         class
 hi! link cCustomClassName     cCustomClass
-
-" TODO I'm unsure if I used delimiter or operator for other languages.
 hi! link cCustomDot           delimiter
-
 hi! link cCustomFunc          functionName
 
 " TODO So this is actually a member inside of a strcuture, would it be better
@@ -52,16 +49,17 @@ hi! link cCustomFunc          functionName
 " FIXME Reword...
 hi! link cCustomMemVar        member
 
-" TODO Once again I don't know if I should use delimiter or operator because I
-" don't know what I've used in other languges.
 hi! link cCustomPtr           delimiter
 
+" This is the '::' that separate a namespace?.. in cpp?
 hi! link cCustomScope         delimiter
 
 " FIXME The reason why I'm using variable, is  because I feel like it should be
 " some type of light blue, I just don't want it to be this blue, I want it to
 " be of its own.  So I need to come back and fix this.
+" this is lilke static_cast in cpp
 hi! link cCustomTemplateFunc  variable
+
 hi! link cDefine              define
 hi! link cFormat              format
 hi! link cInclude             include
