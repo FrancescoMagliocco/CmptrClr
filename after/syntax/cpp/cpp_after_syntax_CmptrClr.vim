@@ -1,7 +1,7 @@
 " File              : cpp_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 10/04/2019 15:07:37
+" Last Modified Date: 15/04/2019 18:23:04
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -15,8 +15,22 @@ let g:CmptrClr_loaded_cpp = get(g:, 'CmptrClr_loaded_cpp', 1)
 " will be thrown.
 if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
 
-hi! link cppConstant  constant
-hi! link cppNumber    number
+let g:CmptrClr_loaded_c = 0
+
+execute 'runtime syntax/c/c_after_syntax_CmptrClr.vim'
+
+hi! link cppBoolean       boolean
+hi! link cppConstant      constant
+hi! link cppNumber        number
+hi! link cppStatement     statement
+hi! link cppSTLConstant   constant
+hi! link cppSTLFunction   functionName
+
+" Should this be class?
+hi! link cppSTLNamespace  constant
+hi! link cppSTLType       cppType
+hi! link cppStructure     structure
+hi! link cppType          type
 
 function! s:SourceHlFile()
   if g:CmptrClr_use_user_hl[&filetype]
