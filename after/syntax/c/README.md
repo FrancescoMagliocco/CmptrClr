@@ -1,3 +1,4 @@
+# Info on the `C` syntax files
 - The `cCustomAccessKey` group is linked to `attribute`, maybe make a group for
     it and atleast have it linked to `attribute` if not be its own color.
     `cCustomAccessKey` is used to highlight *modifiers* for `cpp` files.
