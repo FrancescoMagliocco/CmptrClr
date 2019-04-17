@@ -1,7 +1,7 @@
 " File              : debsources_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 10/04/2019
-" Last Modified Date: 11/04/2019 21:18:29
+" Last Modified Date: 17/04/2019 18:44:24
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -14,16 +14,12 @@ let g:CmptrClr_loaded_debsources = get(g:, 'CmptrClr_loaded_debsources', 1)
 
 " XXX WARNING If the the current filetype does not exist in the dict, an error
 " will be thrown.
-if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
+if g:CmptrClr_use_default_hl[&filetype]
+  hi! link debsourcesComment  comment
+  hi! link debsourcesKeyword  statement
+  hi! link debsourcesUri      underlined
+endif
 
-hi! link debsourcesComment  comment
-hi! link debsourcesKeyword  statement
-hi! link debsourcesUri      underlined
-
-function! s:SourceHlFile()
-  if g:CmptrClr_use_user_hl[&filetype]
-    execute 'source' g:CmptrClr_user_hl[&filetype]
-  endif
-endfunction
+call CmptrClr#SourceHlFile()
 
 let g:CmptrClr_loaded_debsources = 1

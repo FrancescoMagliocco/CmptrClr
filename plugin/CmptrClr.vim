@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 01/04/2019
-" Last Modified Date: 16/04/2019 00:47:27
+" Last Modified Date: 17/04/2019 20:33:58
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 " Version 8 and higher has the option 'termguicolors'
@@ -82,23 +82,29 @@ for [k, v] in items(s:CmptrClr_use_default_hl)
 endfor
 
 let g:CmptrClr_use_user_hl = get(g:, 'CmptrClr_use_user_hl', {})
-
 let g:CmptrClr_user_hl = get(g:, 'CmptrClr_user_hl', {})
-if !empty(g:CmptrClr_user_hl) | call s:ParseHlDict() | endif
 
 " TODO Only supports specifiying one file for each languagee.
+" This is to only be used interanlly which is why this isn't defined in
+" autoload.
 function! s:ParseHlDict()
   for [k, v] in items(g:CmptrClr_user_hl)
+    " I only want default values to be set in 'g:CmptrClr_use_user_hl' only if
+    " the file is present.  That way there isn't a little bit of memory
+    " wasited.
     if !filereadable(v)
       echohl warningMsg | echomsg v . ' does not exists.' | echohl None
-      " Removing instead of updating to 0 to save space in memory.
       unlet g:CmptrClr_user_hl[k]
-      continue | endif
+      if has_key(g:CmptrClr_use_user_hl, k)
+        unlet g:CmptrClr_use_user_hl[k]
+      endif | continue | endif
 
-    " TODO Maybe implement this in with the filereadable
-    g:CmptrClr_use_user_hl[k] = 1
+    let g:CmptrClr_use_user_hl[k] = get(g:CmptrClr_use_user_hl, k, 1)
   endfor
 endfunction
+
+if !empty(g:CmptrClr_user_hl) | call s:ParseHlDict() | endif
+
 
 " TODO I want to implement the option to specify directories for user created
 " highlight groups.  They will be sourced after the main highlight group files
@@ -109,11 +115,4 @@ endfunction
 " save a little bit of memory, and also be less cpu intensive.
 let g:loaded_CmptrClr = 1
 
-" TODO If something was changed in the main colorscheme, the colors may not
-" update collorectly.
-" vint: -ProhibitAbbreviationOption
-function! s:ReloadSyn()
-  execute 'let g:CmptrClr_loaded_' . &ft . '= 0'
-  execute 'runtime syntax/' . &ft . '/' . &ft . '_after_syntax_CmptrClr.vim'
-endfunction
-command! CmptrClrReload call s:ReloadSyn()
+command! CmptrClrReload call CmptrClr#ReloadSyn()

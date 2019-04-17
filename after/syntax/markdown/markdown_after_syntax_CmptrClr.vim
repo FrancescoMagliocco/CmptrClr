@@ -1,7 +1,7 @@
 " File              : markdown_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 09/04/2019 22:00:00
-" Last Modified Date: 10/04/2019 15:16:56
+" Last Modified Date: 17/04/2019 19:19:07
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -13,47 +13,46 @@ let g:CmptrClr_loaded_markdown = get(g:, 'CmptrClr_loaded_markdown', 1)
 
 " XXX WARNING If the the current filetype does not exist in the dict, an error
 " will be thrown.
-if !g:CmptrClr_use_default_hl[&filetype] | call s:SourceHlFile() | endif
+if g:CmptrClr_use_default_hl[&filetype]
 
-" Needed in order to source the file again in case something from this syntax
-" file was changed.
-let g:CmptrClr_loaded_html = 0
+  " Needed in order to source the file again in case something from this syntax
+  " file was changed.
+  let g:CmptrClr_loaded_html = 0
 
-" the markdown syntax file includes the html syntax.
-execute 'runtime syntax/html/html_after_syntax_CmptrClr.vim'
-setl conceallevel=0
+  " the markdown syntax file includes the html syntax.
+  execute 'runtime syntax/html/html_after_syntax_CmptrClr.vim'
 
-hi! link mkdBlockQuote        comment
-hi! link mkdBold              special
-hi! link mkdBoldItalic        special
-hi! link mkdCode              preProc
-hi! link mkdCodeDelimiter     mkdDelimiter
-hi! link mkdDelimiter         delimiter
+  " FIXME This setting did not seem to set
+  setl conceallevel=0
 
-" [mkdLink][mkdID]
-hi! link mkdID                identifier
-hi! link mkdItalic            special
-hi! link mkdHeading           special
-hi! link mkdInlineURL         underline
-hi! link mkdLink              underline
+  hi! link mkdBlockQuote        comment
+  hi! link mkdBold              special
+  hi! link mkdBoldItalic        special
+  hi! link mkdCode              preProc
+  hi! link mkdCodeDelimiter     mkdDelimiter
+  hi! link mkdDelimiter         delimiter
 
-" TODO Change to something else.  Maybe make a reference group.
-hi! link mkdLinkDef           identifier
+  " [mkdLink][mkdID]
+  hi! link mkdID                identifier
+  hi! link mkdItalic            special
+  hi! link mkdHeading           special
+  hi! link mkdInlineURL         underline
+  hi! link mkdLink              underline
 
-" [mkdLinkDef]: mkdLinkDefTarget
-hi! link mkdLinkDefTarget     string
-hi! link mkdListItem          special
-hi! link mkdListItemLine      normal
-hi! link mkdNonListItemBlock  normal
-hi! link mkdRule              title
+  " TODO Change to something else.  Maybe make a reference group.
+  hi! link mkdLinkDef           identifier
 
-" [mkdLink](mkdURL)
-hi! link mkdURL               string
+  " [mkdLinkDef]: mkdLinkDefTarget
+  hi! link mkdLinkDefTarget     string
+  hi! link mkdListItem          special
+  hi! link mkdListItemLine      normal
+  hi! link mkdNonListItemBlock  normal
+  hi! link mkdRule              title
 
-function! s:SourceHlFile()
-  if g:CmptrClr_use_user_hl[&filetype]
-    execute 'source' g:CmptrClr_user_hl[&filetype]
-  endif
-endfunction
+  " [mkdLink](mkdURL)
+  hi! link mkdURL               string
+endif
+
+call CmptrClr#SourceHlFile()
 
 let g:CmptrClr_loaded_markdown = 1
