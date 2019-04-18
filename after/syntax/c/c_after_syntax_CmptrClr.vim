@@ -15,7 +15,6 @@ let g:CmptrClr_loaded_c = get(g:, 'CmptrClr_loaded_c', 1)
 " will be thrown.
 if g:CmptrClr_use_default_hl[&filetype]
   hi cCommentStart    guifg=#404040 guibg=NONE    cterm=none
-  hi cTagsDefinedName guifg=#C000C0 guibg=NONE    cterm=none
 
   hi! link cAnsiFunction        functionName
   hi! link cBoolean             boolean
@@ -77,12 +76,6 @@ if g:CmptrClr_use_default_hl[&filetype]
   hi! link cStorageClass        storageClass
   hi! link cString              string
   hi! link cStructure           structure
-  hi! link cTagsConstant        constant
-  hi! link cTagsGlobalVariable  globalVariable
-  hi! link cTagsFunction        functionName
-  hi! link cTagsLocalVariable   localVariable
-  hi! link cTagsMember          member
-  hi! link cTagsType            cType
   hi! link cType                type
   hi! link cUserLabel           cLabel
 endif

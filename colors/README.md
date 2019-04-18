@@ -37,8 +37,8 @@
   - `quickFixLine`
   - `specialKey`
 - `signColumn` is set to be `#000000` for the `guibg`, but it seems to be
-    getting overridden somehwere.  A fix may be to place the colorscheme in
-    `after/colors`
+    getting overridden somehwere.  ~~A fix may be to place the colorscheme in
+    `after/colors`~~  That did not work.
 - The last time I checked in **java**, `true` and `false` were being
     highlighted with the group `cTagsField`..  Double check this.  When first
     making the syntax file for **java** it was really *wonky* until I restarted
@@ -75,5 +75,3 @@
   - `tabLineFill`
   - `tabLineSel`
 - Get the groups used by **AirLine** and implement them
-- Maybe move all `cTags` groups into the main colorScheme, as they are used by
-    not only **C**.

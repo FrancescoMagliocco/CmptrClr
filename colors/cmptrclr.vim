@@ -73,6 +73,7 @@ hi comment          guifg=#505050 guibg=NONE    cterm=none
 hi conceal          guifg=#101010 guibg=NONE    cterm=none
 hi conditional      guifg=#8000A8 guibg=NONE    cterm=none
 hi constant         guifg=#F8D000 guibg=NONE    cterm=none
+hi cTagsDefinedName guifg=#C000C0 guibg=NONE    cterm=none
 hi cursorColumn     guifg=NONE    guibg=#181818 cterm=none
 hi cursorLine       guifg=NONE    guibg=#181818 cterm=none
 hi cursorLineNr     guifg=#F80000 guibg=#000000 cterm=none
@@ -95,7 +96,6 @@ hi format           guifg=#800000 guibg=NONE    cterm=underline
 
 hi functionName     guifg=#008048 guibg=NONE    cterm=none
 hi functionVariable guifg=#F8F800 guibg=NONE    cterm=none
-
 
 " TODO Maybe check if gitGutter is installed before highlighting for these
 hi gitGutterAdd           guifg=#00F800 guibg=NONE    cterm=none
@@ -206,24 +206,27 @@ hi warningMsg             guifg=#F0A800 guibg=NONE    cterm=bold
 hi wildMenu               guifg=#F8F8F8 guibg=#800000 cterm=none
 
 hi! link cTagsClass           class
-hi! link error                errorMsg
+hi! link cTagsConstant        constant
 
 " FIXME This is probably inaccurate
 " In Java, this is highlighting 'true' and 'false'
 hi! link cTagsField           member
 
+hi! link cTagsFunction        functionName
+hi! link cTagsGlobalVariable  globalVariable
+hi! link cTagsLocalVariable   localVariable
+hi! link cTagsMember          member
 hi! link cTagsMethod          method
-
-" TODO Make a namespace group
 hi! link cTagsPackage         namespace
+hi! link cTagsType            type
 
+hi! link error                errorMsg
 hi! link tagName              notation
 
 " Linking to cTagsDefined name as that's what c uses.
 hi! link boolean              cTagsDefinedName
 
 hi! link variable             cTagsGlobalVariable
-
 hi! link float                number
 
 " This was first seen in a cpp (cc) file.
