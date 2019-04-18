@@ -14,11 +14,6 @@
 - `cCustomBrack` highlights `<<` in `cpp` files.
 - `cCustomMemVar` is linked to `member` as it is a *member* of a `structure`
 - `cCustomScope` is simply the `::` that separte `namespaces` in `cpp` files.
-- `cCustomTemplateFunc` is linked to `variable` as I feel like it should be
-    some kind of blue for what is being highlighed.  An example of what is
-    being highlighted would be `static_cast`.  I can't think of a group to come
-    up with, and even if I do, I'm not sure if I should just keep the link to
-    `variable` or create its own color.
 - `cOperator` highlights `sizeof` and I wouldn't *exactly* say that `sizeof` is
     an operator.  I would say it is more of a *builtin* function.  I
     `cOperator` linked to `command` because that was the first thing that I

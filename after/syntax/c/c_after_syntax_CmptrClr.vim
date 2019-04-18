@@ -52,11 +52,8 @@ if g:CmptrClr_use_default_hl[&filetype]
   " This is the '::' that separate a namespace?.. in cpp?
   hi! link cCustomScope         delimiter
 
-  " FIXME The reason why I'm using variable, is  because I feel like it should be
-  " some type of light blue, I just don't want it to be this blue, I want it to
-  " be of its own.  So I need to come back and fix this.
   " this is lilke static_cast in cpp
-  hi! link cCustomTemplateFunc  variable
+  hi! link cCustomTemplateFunc  command
 
   hi! link cDefine              define
   hi! link cFormat              format
