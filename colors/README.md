@@ -75,3 +75,10 @@
   - `tabLineFill`
   - `tabLineSel`
 - Get the groups used by **AirLine** and implement them
+- I'm considering a *module* to be like a *class* kind of, so I have linked
+    `cTagsModule` to `class`
+  - Maybe I should use something else for `cTagsModule` as there is a group
+      called `cTagsClass`and I'm sure if it wasn't meant to be differnt from
+      `cTagsModule`, there would only be one of those groups.
+- `cTagsSubroutine` is being linked to `functionName` as a *routine* is kind of
+    a function..  I think..
