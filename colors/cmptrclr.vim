@@ -1,7 +1,7 @@
 " File              : cmptrclr.vim
 " Author            : Francesco Magliocco
-" Date              : 12/04/2019 22:11:30
-" Last Modified Date: 16/04/2019 01:58:33
+" Date              : 12/04/2019
+" Last Modified Date: 17/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 hi clear Normal

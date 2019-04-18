@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
-" Date              : 17/04/2019 15:36:46
-" Last Modified Date: 17/04/2019 20:34:25
+" Date              : 17/04/2019
+" Last Modified Date: 17/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
