@@ -40,6 +40,7 @@ if g:CmptrClr_use_default_hl[&filetype]
   hi! link goStatement            statement
   hi! link goSignedInts           type
   hi! link goString               string
+  hi! link goTodo                 todo
   hi! link goType                 type
 
   " TODO Could the word 'var' be considered as a type?
