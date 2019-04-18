@@ -217,7 +217,9 @@ hi! link cTagsGlobalVariable  globalVariable
 hi! link cTagsLocalVariable   localVariable
 hi! link cTagsMember          member
 hi! link cTagsMethod          method
+hi! link cTagsModule          class
 hi! link cTagsPackage         namespace
+hi! link cTagsSubroutine      functionName
 hi! link cTagsType            type
 
 hi! link error                errorMsg
