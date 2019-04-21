@@ -1,7 +1,7 @@
 " File              : markdown_after_syntax_CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 09/04/2019
-" Last Modified Date: 17/04/2019
+" Last Modified Date: 21/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr')
@@ -22,9 +22,6 @@ if g:CmptrClr_use_default_hl[&filetype]
   " the markdown syntax file includes the html syntax.
   execute 'runtime syntax/html/html_after_syntax_CmptrClr.vim'
 
-  " FIXME This setting did not seem to set
-  setl conceallevel=0
-
   hi! link mkdBlockQuote        comment
   hi! link mkdBold              special
   hi! link mkdBoldItalic        special
@@ -36,8 +33,8 @@ if g:CmptrClr_use_default_hl[&filetype]
   hi! link mkdID                identifier
   hi! link mkdItalic            special
   hi! link mkdHeading           special
-  hi! link mkdInlineURL         underline
-  hi! link mkdLink              underline
+  hi! link mkdInlineURL         underlined
+  hi! link mkdLink              underlined
 
   " TODO Change to something else.  Maybe make a reference group.
   hi! link mkdLinkDef           identifier
