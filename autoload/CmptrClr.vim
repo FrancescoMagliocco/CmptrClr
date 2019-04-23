@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 17/04/2019
-" Last Modified Date: 21/04/2019
+" Last Modified Date: 22/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
@@ -79,6 +79,34 @@ function! CmptrClr#GetBG(group)
   return CmptrClr#GetColor(a:group, 'bg')
 endfunction
 
+" FIXME If a:string is a number and > 255, 1 will still be returned.
+function! CmptrClr#IsColor(string)
+  return a:string =~
+        \ '^\(#\x\{6\}\|\d\{1,3\}'
+        \ . '\|Black\|White\|NONE\|\(\(Dark\|Light\)\?'
+        \ . '\(Blue\|Green\|Cyan\|Red\|Magenta\|Yellow\|Gray\|Grey\)\)\)$'
+endfunction
+
+" TODO I don't like how I am going about this.  I don't like how the return
+" statements are.  I originally wanted to convert a list to a string (If a list
+" was specified), and match like how I am below, but check for precieding
+" commas, but I coudn't figure out.  I'm thinking maybe if I include in the
+" match an optional comma.  I think that would be done like \#[,] or something
+" along the lines of that.  The only problem is how would I have it not stop
+" after the first match and continue checking the rest?
+function! CmptrClr#IsAttrib(string)
+  for i in (type(a:string) == v:t_string ? split(a:string, ',') : a:string)
+    if i =~# '^\(bold\|underline\|undercurl\|strikethrough\|reverse\|inverse'
+          \ . '\|italic\|standout\|nocomine\|none\)$'
+      continue
+    endif
+
+    return 0
+  endfor
+
+  return 1
+endfunction
+
 " FIXME If one of the values in a:options are of a color and not a group, the
 " function will return resulting in nothing being done.
 function! CmptrClr#SetHl(group, options)
@@ -144,7 +172,7 @@ function! CmptrClr#SetHl(group, options)
     let tmpopt = opts[k]
     let options[k] = tmpopt.func(v, tmpopt.what, tmpopt.mode)
   endfor
-  
+
   echohl errorMsg | echoerr 'Not implemented' | echohl None
   " TODO Implement the rest of this function
 endfunction
