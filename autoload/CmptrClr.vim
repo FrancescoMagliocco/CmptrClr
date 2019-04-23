@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 17/04/2019
-" Last Modified Date: 22/04/2019
+" Last Modified Date: 23/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
@@ -31,7 +31,15 @@ function! CmptrClr#HlExists(group)
 endfunction
 
 " If mode is not specified and termguicolors is on, what gui is set to is what
-" will be returned.
+" will be returned.  To get around this, if no optional argument is given, it
+" will default to 'cterm'
+"
+" TODO If no optional argument is given and termguicolors is on, have the mode
+" default to cterm as odds are if termguicolors is on, you're in the terminal.
+" If it is not on, 'the attributes for the currently active highlighting are
+" used (GUI, cterm or term).'  (Info in the single quotes is quoted as is from
+" 'synIDattr')
+"
 " Returned is a string created from a list of what cterm is set to.  The
 " returned value is in a format such that it would be approrpieate to be used
 " to set the cterm of a different group.
@@ -122,55 +130,23 @@ function! CmptrClr#SetHl(group, options)
   let GetColorRef = funcref('CmptrClr#GetColor')
 
   " FIXME Redefine this in the outerscope to use less cpu cycles.
+  " Possibly could be changed if in outerscope
   let opts = {
-        \ 'cterm': {
-        \   'func': GetAttrRef,
-        \   'what': '',
-        \   'mode': 'cterm'
-        \   },
-        \ 'ctermfg': {
-        \   'func': GetColorRef,
-        \   'what': 'fg',
-        \   'mode': 'cterm'
-        \   },
-        \ 'ctermbg': {
-        \   'func': GetColorRef,
-        \   'what': 'bg',
-        \   'mode': 'cterm'
-        \   },
-        \ 'gui': {
-        \   'func': GetAttrRef,
-        \   'what': '',
-        \   'mode': 'gui'
-        \   },
-        \ 'font': {
-        \   'func': GetColorRef,
-        \   'what': 'bg',
-        \   'mode': 'cterm'
-        \   },
-        \ 'guifg': {
-        \   'func': GetColorRef,
-        \   'what': 'fg',
-        \   'mode': 'gui'
-        \   },
-        \ 'guibg': {
-        \   'func': GetColorRef,
-        \   'what': 'bg',
-        \   'mode': 'gui'
-        \   },
-        \ 'guisp': {
-        \   'func': GetColorRef,
-        \   'what': 'sp',
-        \   'mode': 'gui'
-        \   },
+        \ 'cterm':    { _ -> GetAttrRef(_, 'cterm') },
+        \ 'ctermfg':  { _ -> GetColorRef(_, 'fg', 'cterm') },
+        \ 'ctermbg':  { _ -> GetColorRef(_, 'bg', 'cterm') },
+        \ 'gui':      { _ -> GetAttrRef(_, 'gui') },
+        \ 'font':     { _ -> execute("throw 'Not Implemented'") },
+        \ 'guifg':    { _ -> GetColorRef(_, 'fg', 'gui') },
+        \ 'guibg':    { _ -> GetColorRef(_, 'bg', 'gui') },
+        \ 'guisp':    { _ -> GetAttrRef(_, 'sp', 'gui') },
         \ }
 
   let options = {}
 
   for [k, v] in items(a:options)
     if !has_key(opts, k) | continue | endif
-    let tmpopt = opts[k]
-    let options[k] = tmpopt.func(v, tmpopt.what, tmpopt.mode)
+    let options[k] = opts[k](v)
   endfor
 
   echohl errorMsg | echoerr 'Not implemented' | echohl None
