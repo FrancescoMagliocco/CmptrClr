@@ -122,7 +122,7 @@ endfunction
 function! CmptrClr#IsAttrib(string)
   for i in (type(a:string) == v:t_string ? split(a:string, ',') : a:string)
     if i =~# '^\(bold\|underline\|undercurl\|strikethrough\|reverse\|inverse'
-          \ . '\|italic\|standout\|nocomine\|none\)$'
+          \ . '\|italic\|standout\|nocombine\|none\)$'
       continue
     endif
 
