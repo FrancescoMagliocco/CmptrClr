@@ -132,38 +132,30 @@ function! CmptrClr#IsAttrib(string)
   return 1
 endfunction
 
+" XXX Make sure these can't be changed outside of the script scope.
+let s:GetAttrRef  = funcref('CmptrClr#GetAttrib')
+let s:GetColorRef = funcref('CmptrClr#GetColor')
+let s:opts = {
+      \ 'cterm':    { _ -> GetAttrRef(_, 'cterm') },
+      \ 'ctermfg':  { _ -> GetColorRef(_, 'fg', 'cterm') },
+      \ 'ctermbg':  { _ -> GetColorRef(_, 'bg', 'cterm') },
+      \ 'gui':      { _ -> GetAttrRef(_, 'gui') },
+      \ 'font':     { _ -> execute("throw 'Not Implemented'") },
+      \ 'guifg':    { _ -> GetColorRef(_, 'fg', 'gui') },
+      \ 'guibg':    { _ -> GetColorRef(_, 'bg', 'gui') },
+      \ 'guisp':    { _ -> GetAttrRef(_, 'sp', 'gui') },
+      \ }
+
 " FIXME If one of the values in a:options are of a color and not a group, the
 " function will return resulting in nothing being done.
 function! CmptrClr#SetHl(group, options)
   if !CmptrClr#HlExists(a:group) | return | endif
 
-  " If we change the name of the function CmptrClr#GetAttrib or
-  " CmptrClr#GetColor, it will be a lot easier to change the funcrefs for these
-  " 2 variables, than to change them for each func entry in opts.
-  "
-  " These variables have to start with a captial as they are referencing a
-  " function
-  let GetAttrRef  = funcref('CmptrClr#GetAttrib')
-  let GetColorRef = funcref('CmptrClr#GetColor')
-
-  " FIXME Redefine this in the outerscope to use less cpu cycles.
-  " Possibly could be changed if in outerscope
-  let opts = {
-        \ 'cterm':    { _ -> GetAttrRef(_, 'cterm') },
-        \ 'ctermfg':  { _ -> GetColorRef(_, 'fg', 'cterm') },
-        \ 'ctermbg':  { _ -> GetColorRef(_, 'bg', 'cterm') },
-        \ 'gui':      { _ -> GetAttrRef(_, 'gui') },
-        \ 'font':     { _ -> execute("throw 'Not Implemented'") },
-        \ 'guifg':    { _ -> GetColorRef(_, 'fg', 'gui') },
-        \ 'guibg':    { _ -> GetColorRef(_, 'bg', 'gui') },
-        \ 'guisp':    { _ -> GetAttrRef(_, 'sp', 'gui') },
-        \ }
-
   let options = {}
 
   for [k, v] in items(a:options)
-    if !has_key(opts, k) | continue | endif
-    let options[k] = opts[k](v)
+    if !has_key(s:opts, k) | continue | endif
+    let options[k] = s:opts[k](v)
   endfor
 
   echohl errorMsg | echoerr 'Not implemented' | echohl None
