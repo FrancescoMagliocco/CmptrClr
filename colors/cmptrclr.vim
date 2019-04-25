@@ -1,7 +1,7 @@
 " File              : cmptrclr.vim
 " Author            : Francesco Magliocco
 " Date              : 12/04/2019
-" Last Modified Date: 17/04/2019
+" Last Modified Date: 24/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 hi clear Normal
@@ -202,7 +202,7 @@ hi type                   guifg=#F86800 guibg=NONE    cterm=none
 hi underlined             guifg=#0080F8 guibg=NONE    cterm=underline
 hi vertSplit              guifg=#800000 guibg=#202020 cterm=none
 hi visual                 guifg=#F8F8F8 guibg=#F88000 cterm=none
-hi warningMsg             guifg=#F0A800 guibg=NONE    cterm=bold
+hi warningMsg             guifg=#F84800 guibg=NONE    cterm=bold
 hi wildMenu               guifg=#F8F8F8 guibg=#800000 cterm=none
 
 hi! link cTagsClass           class
