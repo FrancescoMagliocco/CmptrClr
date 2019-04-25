@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 17/04/2019
-" Last Modified Date: 23/04/2019
+" Last Modified Date: 24/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
@@ -21,8 +21,15 @@ function! CmptrClr#ReloadSyn()
   execute 'runtime syntax/' . &ft . '/' . &ft . '_after_syntax_CmptrClr.vim'
 endfunction
 
+" Expects a:group to be of a string
 function! CmptrClr#HlExists(group)
+  if assert_equal(v:t_string, type(a:group))
+    echohl warningMsg | echomsg v:errors[-1] | echohl None
+    return
+  endif
+
   let retv = hlexists(a:group)
+
   if !retv && g:CmptrClr_debug
     echohl warningMsg | echomsg a:group . ' does not exist' | echohl None
   endif
@@ -45,18 +52,27 @@ endfunction
 " to set the cterm of a different group.
 " If more than one optional arguemnt is given, the last one is used.
 function! CmptrClr#GetAttrib(group, ...)
-  if !CmptrClr#HlExists(a:group) | return | endif
+  " COMBAK I don't like how this is formatted.
+  let retv = CmptrClr#HlExists(a:group) ?
+        \ ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
+        \ 'undercurl', 'strike'] : CmptrClr#IsAttrib(a:group)
+  
+  " if retv is 0, a:group does not exists as a highlight group, and a:group is
+  " not a valid attribute.
+  " If retv is not 0 and the type of retv is a number, this means that a:group
+  " is a valid attribute and it can safely be returned.
+  if type(retv) != v:t_list && !retv
+    return
+  elseif type(retv) == v:t_number
+    return a:group
+  endif
 
-  " This is to stay defined in this scope.
-  let retv = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
-        \ 'undercurl', 'strike']
+""  let retv = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
+""        \ 'undercurl', 'strike']
 
   " TODO Profile this and see if there is a performance gain
   for i in retv
-
-    " This "SHOULD" use the last optional argument.  See CmptrClr#SetColor for
-    " why we are doing this.
-    if synIDattr(synIDtrans(hlID(a:group)), i, a:0 ? a:000[a:0 - 1] : 'cterm')
+    if synIDattr(synIDtrans(hlID(a:group)), i, a:0 ? a:1 : 'cterm')
       continue | endif
     unlet retv[index(retv, i)]
   endfor
@@ -65,6 +81,7 @@ function! CmptrClr#GetAttrib(group, ...)
 endfunction
 
 function! CmptrClr#GetColor(group, what, ...)
+  if CmptrClr#IsColor(a:group) | return a:group | endif
   if !CmptrClr#HlExists(a:group) | return | endif
 
   " What a:what can be
