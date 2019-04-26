@@ -662,6 +662,13 @@
 ##### Changed
 - Changed the `guifg` of `warningMsg` to a darker orange.
 
-## Current
+## c0c55660c53dd454e533f5825cccc24ec378fdb7
 ##### Added
 - Created a CHANGELOG
+
+## Current
+##### Added
+- Finished implementing `CmptrClr#SetHl()`
+##### Fixed
+- Fixed missing missing function `GetAttrRef()` and `GetColorRef()`; added
+    *script/local* access modifier.

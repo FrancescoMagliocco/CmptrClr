@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 17/04/2019
-" Last Modified Date: 24/04/2019
+" Last Modified Date: 26/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
@@ -104,7 +104,7 @@ function! CmptrClr#GetBG(group)
   return CmptrClr#GetColor(a:group, 'bg')
 endfunction
 
-" FIXME If a:string is a number and > 255, 1 will still be returned.
+" FIXME If a:string is v:t_number and > 255, 1 will still be returned.
 function! CmptrClr#IsColor(string)
   return a:string =~
         \ '^\(#\x\{6\}\|\d\{1,3\}'
@@ -136,14 +136,14 @@ endfunction
 let s:GetAttrRef  = funcref('CmptrClr#GetAttrib')
 let s:GetColorRef = funcref('CmptrClr#GetColor')
 let s:opts = {
-      \ 'cterm':    { _ -> GetAttrRef(_, 'cterm') },
-      \ 'ctermfg':  { _ -> GetColorRef(_, 'fg', 'cterm') },
-      \ 'ctermbg':  { _ -> GetColorRef(_, 'bg', 'cterm') },
-      \ 'gui':      { _ -> GetAttrRef(_, 'gui') },
-      \ 'font':     { _ -> execute("throw 'Not Implemented'") },
-      \ 'guifg':    { _ -> GetColorRef(_, 'fg', 'gui') },
-      \ 'guibg':    { _ -> GetColorRef(_, 'bg', 'gui') },
-      \ 'guisp':    { _ -> GetAttrRef(_, 'sp', 'gui') },
+      \ 'cterm':    { _ -> s:GetAttrRef(_, 'cterm') },
+      \ 'ctermfg':  { _ -> s:GetColorRef(_, 'fg', 'cterm') },
+      \ 'ctermbg':  { _ -> s:GetColorRef(_, 'bg', 'cterm') },
+      \ 'gui':      { _ -> s:GetAttrRef(_, 'gui') },
+      \ 'font':     { _ -> s:execute("throw 'Not Implemented'") },
+      \ 'guifg':    { _ -> s:GetColorRef(_, 'fg', 'gui') },
+      \ 'guibg':    { _ -> s:GetColorRef(_, 'bg', 'gui') },
+      \ 'guisp':    { _ -> s:GetAttrRef(_, 'sp', 'gui') },
       \ }
 
 " FIXME If one of the values in a:options are of a color and not a group, the
@@ -158,6 +158,7 @@ function! CmptrClr#SetHl(group, options)
     let options[k] = s:opts[k](v)
   endfor
 
-  echohl errorMsg | echoerr 'Not implemented' | echohl None
-  " TODO Implement the rest of this function
+  for [k, v] in items(options)
+    execute 'hi!' a:group k . '=' . v
+  endfor
 endfunction
