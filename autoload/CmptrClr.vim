@@ -54,17 +54,15 @@ function! CmptrClr#GetAttrib(group, ...)
   " We have to check in this order for the main reason being there is a group
   " called 'none', and if we want to set the attribute for a group to be
   " 'none', we wont be able to do so.
+  " TODO Should probably check if a:group is a list or not.
   let retv = CmptrClr#IsAttrib(a:group) ? a:group : CmptrClr#HlExists(a:group)
   
   " if retv is 0, a:group does not exists as a highlight group, and a:group is
   " not a valid attribute.
   " If retv is not 0 and the type of retv is a number, this means that a:group
   " is a valid attribute and it can safely be returned.
-  if type(retv) == v:t_string
-    return retv
-  elseif !retv
-    return 'none'
-  endif
+  if type(retv) == v:t_string | return retv
+  elseif !retv | return 'none' | endif
 
   " We could have used filter to set this in the trenary, but I feel like it
   " would be more efficient this way.
@@ -125,6 +123,8 @@ endfunction
 " along the lines of that.  The only problem is how would I have it not stop
 " after the first match and continue checking the rest?
 function! CmptrClr#IsAttrib(string)
+  " We can't use filter() here becase we are returning 0 even if just one value
+  " in a:string is not a valid attribute.
   for i in (type(a:string) == v:t_string ? split(a:string, ',') : a:string)
     if i =~# '^\(bold\|underline\|undercurl\|strikethrough\|reverse\|inverse'
           \ . '\|italic\|standout\|nocombine\|none\)$'
@@ -138,6 +138,7 @@ function! CmptrClr#IsAttrib(string)
 endfunction
 
 " XXX Make sure these can't be changed outside of the script scope.
+" XXX Is there a way to make things readonly?
 let s:GetAttrRef  = funcref('CmptrClr#GetAttrib')
 let s:GetColorRef = funcref('CmptrClr#GetColor')
 let s:opts = {
@@ -179,7 +180,7 @@ function! CmptrClr#SetHl(group, options, ...)
   "
   " We can't do this and map/filter everything at once, because we may need the
   " length of what opts would be if a:options is not a v:t_dict
-  let opts = filter(extend([a:options], a:000), { k -> k < 3 })
+  let opts = filter(extend([a:options], a:000), 'v:key < 3')
 
   " If a:options is a v:t_dict, even if there are optional arguments specified,
   " we will ignore them.  We know that a:options has key-val that we need.
@@ -194,11 +195,11 @@ function! CmptrClr#SetHl(group, options, ...)
         \     filter(
         \       { 'guifg': 0, 'guibg': 1, 'cterm': 2 },
         \       'v:val < len(opts)'),
-        \     { k, v -> opts[v] })
+        \     'opts[v:val]')
 
   let options = map(
-        \ filter(options, { k -> has_key(opts, k) }),
-        \ { k, v -> s:opts[k](opts[k]) })
+        \ filter(options, 'has_key(opts, v:key)'),
+        \ { k -> s:opts[k](opts[k]) })
 
   for [k, v] in items(options)
     execute 'hi!' a:group k . '=' . v

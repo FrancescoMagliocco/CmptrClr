@@ -673,7 +673,7 @@
 - Fixed missing missing function `GetAttrRef()` and `GetColorRef()`; added
     *script/local* access modifier.
 
-## Current
+## C29707b121d5e6c764bc1d9039a30976becc405f
 ##### Added
 - Added some comments
 - Added some TODO's
@@ -687,3 +687,10 @@
     than an empty string.
 ##### Removed
 - Removed some comments
+
+## Current
+##### Added
+- Added some TODO's
+##### Changed
+- Reformatted a bit
+- Using `string` instead of `lambda` where appropriate.
