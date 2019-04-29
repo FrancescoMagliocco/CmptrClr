@@ -1,8 +1,8 @@
 " File              : cmptrclr.vim
 " Author            : Francesco Magliocco
 " Date              : 12/04/2019
-" Last Modified Date: 24/04/2019
-" vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
+" Last Modified Date: 29/04/2019
+" vim: si:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 hi clear Normal
 set bg&
