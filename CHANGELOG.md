@@ -666,9 +666,24 @@
 ##### Added
 - Created a CHANGELOG
 
-## Current
+## 83961ec44c6db4c1c3cf78519b615849f626b01a
 ##### Added
 - Finished implementing `CmptrClr#SetHl()`
 ##### Fixed
 - Fixed missing missing function `GetAttrRef()` and `GetColorRef()`; added
     *script/local* access modifier.
+
+## Current
+##### Added
+- Added some comments
+- Added some TODO's
+##### Changed
+- If a highlight group doesn't, rather than returning `0`, `NONE` or `none` is
+    returned.
+- `CmptrClr#SetHl()` *should* be more efficient.
+##### Fixed
+- The attribute `none` can now be used.
+- If a specific area of a group is not set, `NONE` or `none` is returned rather
+    than an empty string.
+##### Removed
+- Removed some comments

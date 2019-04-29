@@ -1,7 +1,7 @@
 " File              : CmptrClr.vim
 " Author            : Francesco Magliocco
 " Date              : 17/04/2019
-" Last Modified Date: 26/04/2019
+" Last Modified Date: 29/04/2019
 " vim: ai:et:fenc=utf-8:sw=2:ts=2:sts=2:tw=79:ft=vim:norl
 
 if !exists('g:loaded_CmptrClr') || !g:CmptrClr_enabled | finish | endif
@@ -50,25 +50,28 @@ endfunction
 " Returned is a string created from a list of what cterm is set to.  The
 " returned value is in a format such that it would be approrpieate to be used
 " to set the cterm of a different group.
-" If more than one optional arguemnt is given, the last one is used.
 function! CmptrClr#GetAttrib(group, ...)
-  " COMBAK I don't like how this is formatted.
-  let retv = CmptrClr#HlExists(a:group) ?
-        \ ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
-        \ 'undercurl', 'strike'] : CmptrClr#IsAttrib(a:group)
+  " We have to check in this order for the main reason being there is a group
+  " called 'none', and if we want to set the attribute for a group to be
+  " 'none', we wont be able to do so.
+  let retv = CmptrClr#IsAttrib(a:group) ? a:group : CmptrClr#HlExists(a:group)
   
   " if retv is 0, a:group does not exists as a highlight group, and a:group is
   " not a valid attribute.
   " If retv is not 0 and the type of retv is a number, this means that a:group
   " is a valid attribute and it can safely be returned.
-  if type(retv) != v:t_list && !retv
-    return
-  elseif type(retv) == v:t_number
-    return a:group
+  if type(retv) == v:t_string
+    return retv
+  elseif !retv
+    return 'none'
   endif
 
-""  let retv = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
-""        \ 'undercurl', 'strike']
+  " We could have used filter to set this in the trenary, but I feel like it
+  " would be more efficient this way.
+  " TODO Maybe move to outer scope, but make sure to copy instead of modigying
+  " directly.
+  let retv = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline',
+        \ 'undercurl', 'strike']
 
   " TODO Profile this and see if there is a performance gain
   for i in retv
@@ -77,12 +80,12 @@ function! CmptrClr#GetAttrib(group, ...)
     unlet retv[index(retv, i)]
   endfor
 
-  return join(retv, ',')
+  return empty(retv) ? 'none' : join(retv, ',')
 endfunction
 
 function! CmptrClr#GetColor(group, what, ...)
   if CmptrClr#IsColor(a:group) | return a:group | endif
-  if !CmptrClr#HlExists(a:group) | return | endif
+  if !CmptrClr#HlExists(a:group) | return 'NONE' | endif
 
   " What a:what can be
   let whats = ['fg', 'bg']
@@ -92,8 +95,10 @@ function! CmptrClr#GetColor(group, what, ...)
     echohl None
     return | endif
 
-  return synIDattr(
+  let retv = synIDattr(
         \ synIDtrans(hlID(a:group)), a:what, (a:0 ? a:1 : (&tgc ? 'gui' : '')))
+
+  return (empty(retv) ? 'NONE' : retv)
 endfunction
 
 function! CmptrClr#GetFG(group)
@@ -146,17 +151,54 @@ let s:opts = {
       \ 'guisp':    { _ -> s:GetAttrRef(_, 'sp', 'gui') },
       \ }
 
-" FIXME If one of the values in a:options are of a color and not a group, the
-" function will return resulting in nothing being done.
-function! CmptrClr#SetHl(group, options)
+" If optionarl arguments are specified, and if a:options is not a v:t_dict,
+" a:otpions is used as guifg, a:1 is guibg and a:2 is cterm.  All other
+" arguments will be ignored.
+function! CmptrClr#SetHl(group, options, ...)
   if !CmptrClr#HlExists(a:group) | return | endif
 
-  let options = {}
+  " TODO Mayne place this in the outerscpe, then copy it.  Don't just directly
+  " modify it, or the plugin wont work as expected.
+  let options = {
+        \ 'cterm':    '',
+        \ 'ctermfg':  '',
+        \ 'ctermbg':  '',
+        \ 'gui':      '',
+        \ 'font':     '',
+        \ 'guifg':    '',
+        \ 'guibg':    '',
+        \ 'guisp':    ''
+        \ }
 
-  for [k, v] in items(a:options)
-    if !has_key(s:opts, k) | continue | endif
-    let options[k] = s:opts[k](v)
-  endfor
+  " We only use this result if a:options is not a v:t_dict, we extend a:options
+  " with a:000.  a:options can't be modified, so we have to assign the result
+  " to a variable.  No error is thrown if a:000 is empty.
+  "
+  " We If there are more more than 3 optionarl arguments given, we filter them
+  " out.
+  "
+  " We can't do this and map/filter everything at once, because we may need the
+  " length of what opts would be if a:options is not a v:t_dict
+  let opts = filter(extend([a:options], a:000), { k -> k < 3 })
+
+  " If a:options is a v:t_dict, even if there are optional arguments specified,
+  " we will ignore them.  We know that a:options has key-val that we need.
+  "
+  " If a:options is not a v:t_dict, we use the result of the previous filter when
+  " defining opts.  We then filter the dictionary you see below.  We only accept
+  " the key that's value is < len(opts) as we only have len(opts) - 1 arguments
+  " passed to CmptrClr#SetHl()
+  let opts = type(a:options) == v:t_dict
+        \ ? a:options
+        \ : map(
+        \     filter(
+        \       { 'guifg': 0, 'guibg': 1, 'cterm': 2 },
+        \       'v:val < len(opts)'),
+        \     { k, v -> opts[v] })
+
+  let options = map(
+        \ filter(options, { k -> has_key(opts, k) }),
+        \ { k, v -> s:opts[k](opts[k]) })
 
   for [k, v] in items(options)
     execute 'hi!' a:group k . '=' . v
