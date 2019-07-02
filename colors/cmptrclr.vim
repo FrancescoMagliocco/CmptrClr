@@ -84,6 +84,8 @@ hi cursorLineNr     guifg=#F80000 guibg=#000000 cterm=none
 hi define           guifg=#800080 guibg=NONE    cterm=none
 
 hi delimiter        guifg=#A80000 guibg=NONE    cterm=bold
+hi enumName         guifg=#408000 guibg=NONE    cterm=none
+hi enumValue        guifg=#800040 guibg=NONE    cterm=none
 hi errorMsg         guifg=#F8F8F8 guibg=#F00000 cterm=none
 hi event            guifg=#00F800 guibg=NONE    cterm=none
 hi exception        guifg=#F0A800 guibg=NONE    cterm=none
@@ -109,6 +111,7 @@ hi gitGutterChangeDelete  guifg=#F8A800 guibg=NONE  cterm=none
 hi globalVariable         guifg=#00F8F8 guibg=NONE    cterm=none
 hi identifier             guifg=#008000 guibg=NONE    cterm=none
 hi include                guifg=#e800a0 guibg=NONE    cterm=none
+hi infoMsg                guifg=#F8F800 guibg=NONE    cterm=none
 
 " TODO Maybe set the fg and bg to none, so the color is kept?
 hi italic                 guifg=#F8F8F8 guibg=NONE    cterm=italic
@@ -223,6 +226,10 @@ hi! link cTagsSubroutine      functionName
 hi! link cTagsType            type
 
 hi! link error                errorMsg
+" FIXME THis should probably have it's own color
+hi! link field                member
+" TODO Lookk more into this
+hi! link property             globalVariable
 hi! link tagName              notation
 
 " Linking to cTagsDefined name as that's what c uses.
@@ -230,6 +237,8 @@ hi! link boolean              cTagsDefinedName
 
 hi! link variable             cTagsGlobalVariable
 hi! link float                number
+
+hi! link using                namespace
 
 " This was first seen in a cpp (cc) file.
 hi! link angleBracketContents delimiter
