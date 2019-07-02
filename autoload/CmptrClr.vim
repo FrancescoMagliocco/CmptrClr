@@ -21,6 +21,8 @@ function! CmptrClr#ReloadSyn()
   execute 'runtime syntax/' . &ft . '/' . &ft . '_after_syntax_CmptrClr.vim'
 endfunction
 
+finish
+
 " Expects a:group to be of a string
 function! CmptrClr#HlExists(group)
   if assert_equal(v:t_string, type(a:group))
