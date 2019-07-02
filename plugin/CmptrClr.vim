@@ -45,6 +45,7 @@ let s:CmptrClr_use_default_hl = {
       \ 'c'           : 1,
       \ 'conf'        : 1,
       \ 'cpp'         : 1,
+      \ 'cs'          : 1,
       \ 'css'         : 1,
       \ 'debsources'  : 1,
       \ 'dosbatch'    : 1,
