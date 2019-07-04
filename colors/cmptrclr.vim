@@ -87,7 +87,10 @@ hi delimiter        guifg=#A80000 guibg=NONE    cterm=bold
 hi enumName         guifg=#408000 guibg=NONE    cterm=none
 hi enumValue        guifg=#800040 guibg=NONE    cterm=none
 hi errorMsg         guifg=#F8F8F8 guibg=#F00000 cterm=none
-hi event            guifg=#00F800 guibg=NONE    cterm=none
+
+" FIXME This is pretty much the same color as a class, so for something that is
+"   class.event, they are the same color.  Lets temporarily use yellow
+hi event            guifg=#F8F800 guibg=NONE    cterm=none
 hi exception        guifg=#F0A800 guibg=NONE    cterm=none
 
 " What is foldColumn?
