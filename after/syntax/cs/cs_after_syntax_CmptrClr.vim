@@ -23,6 +23,7 @@ if g:CmptrClr_use_default_hl[&ft]
   hi! link csConstant   constant
   hi! link csContexualStatement statement
   hi! link csEndColon   csOpSymbols
+  hi! link csEnum       enumName
   hi! link csEvent      event
   hi! link csException  exception
   hi! link csLocal      localVariable
